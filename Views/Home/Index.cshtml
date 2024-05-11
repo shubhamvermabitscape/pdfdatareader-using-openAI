@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT UI</title>
+
+</head>
+<body>
+
+    <div id="chatBox"></div>
+
+    <input type="text" id="userMessage" />
+    <button id="sendButton" onclick="sendMessage()">Send</button>
+
+
+    <script>
+        function sendMessage() {
+            var userMessage = $("#userMessage").val();
+            $.post("/Chat/GetResponseFromPdf", { userMessage: userMessage }, function (data) {
+                $("#chatBox").append("<p><b>User:</b> " + userMessage + "</p>");
+                $("#chatBox").append("<p><b>Bitscape AI: </b>" + data.response + "</p>");
+            });
+        }
+    </script>
+
+</body>
+</html>
+
+
+
+
+
